@@ -1,0 +1,9 @@
+<h1>Yazılar</h1>
+
+  <%=@posts.each do |p|%>
+  <p>Başlık : <%=link_to p.title,posts_show_path(p.slug) %></p>
+  <p>İçerik : <%=p.context %></p>
+  <p>Oluşturma Tarihi : <%=p.created_at %></p>
+  <%end %>
+
+  <%= link_to "Yeni Yazı Ekle",post_new_path %>
