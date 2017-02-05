@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   get 'post/index'
 
   get 'post/show/:slug',to:'post#show', as: :posts_show
+  post 'posts',to:'posts#create',as: :posts
   #get 'post/show'
 
   get 'post/new'
