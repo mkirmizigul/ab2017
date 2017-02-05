@@ -1,6 +1,6 @@
 class PostController < ApplicationController
   def index
-    @posts=Post.all
+    @posts=Post.all.reverse
   end
 
   def show
@@ -12,7 +12,41 @@ class PostController < ApplicationController
     @post=Post.new
   end
 
-  def edit
-
+  def create
+    @post=Post.new(post_params)
+    if @post.save
+      redirect_to post_index_path
+    else
+      render :new
+    end
   end
+
+  def edit
+    @post=Post.find_by_slug(params[:slug])
+  end
+
+  def update
+    post_slug=params[:slug]
+    @post=Post.find_by_slug(post_slug)
+    if @post.update(post_params)
+      redirect_to posts_show_path(@post.slug)
+    else
+      return :edit
+    end
+  end
+
+  def destroy
+    post_slug=params[:slug]
+    @post=Post.find_by_slug(post_slug)
+
+    if @post.destroy!
+      redirect_to :back
+    end
+  end
+
+  private
+    def post_params
+      params.require(:post).permit(:title,:context,:rating,:slug)
+    end
+
 end

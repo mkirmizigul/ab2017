@@ -1,2 +1,13 @@
-<h1>Post#edit</h1>
-<p>Find me in app/views/post/edit.html.erb</p>
+<h1>Yazıyı Düzenle</h1>
+<% if @post.errors.any? %>
+<p>
+    <%= @post.errors.full_messages %>
+</p>
+<% end %>
+<%= form_for @post,url:posts_update_path do |f| %>
+<%= f.text_field :title,placeholder:"Title" %>
+<%= f.text_field :context,placeholder:"Context" %>
+<%= f.text_field :slug,placeholder:"Slug" %>
+<%= f.text_field :rating,placeholder:"Ratings " %>
+<%= f.submit "Enter" %>
+<% end %>

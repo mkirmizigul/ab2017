@@ -1,0 +1,13 @@
+<h1>Kategoriler</h1>
+
+<%@categories.each do |c| %>
+<p>
+<%= c.name %> -
+<%= c.description %>
+</p>
+<%=link_to "Düzenle",edit_category_path(c.id) %>
+<%=link_to "Sil",category_path(c),method: :delete,data:{confirm:"Silmek istediğinize emin misiniz ?"} %>
+<% end %>
+<br/>
+<br/>
+<%=link_to "Yeni Kategori",new_category_path %>

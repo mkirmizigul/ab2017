@@ -1,9 +1,12 @@
 <h1>Yazılar</h1>
 
-  <%=@posts.each do |p|%>
-  <p>Başlık : <%=link_to p.title,posts_show_path(p.slug) %></p>
-  <p>İçerik : <%=p.context %></p>
-  <p>Oluşturma Tarihi : <%=p.created_at %></p>
+  <% @posts.each do |post|%>
+  <p>Başlık : <%=link_to post.title,posts_show_path(post.slug) %></p>
+  <p>İçerik : <%=post.context %></p>
+  <p>Oluşturma Tarihi : <%=post.created_at %></p>
+  <%= link_to "Düzenle",posts_edit_path(post.slug) %>
+  <%= link_to "Sil",posts_destroy_path(post.slug),method: :delete,data:{confirm:"Emin misiniz?"} %>
   <%end %>
-
+<br/>
+<br/>
   <%= link_to "Yeni Yazı Ekle",post_new_path %>
