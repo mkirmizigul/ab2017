@@ -6,8 +6,9 @@
 <% end %>
 <%= form_for @post do |f| %>
 <%= f.text_field :title,placeholder:"Title" %>
+<%= f.select :category_id, @categories %>
 <%= f.text_field :context,placeholder:"Context" %>
-<%= f.text_field :slug,placeholder:"Slug" %>
-<%= f.text_field :rating,placeholder:"Ratings " %>
+<!--<%= f.text_field :slug,placeholder:"Slug" %>-->
+<%= f.number_field :rating,placeholder:"Ratings " %>
 <%= f.submit "Enter" %>
 <% end %>

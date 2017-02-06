@@ -10,6 +10,7 @@ class PostController < ApplicationController
 
   def new
     @post=Post.new
+    @categories = Category.all.map{|c| [c.name,c.id] }.reverse
   end
 
   def create
@@ -23,6 +24,7 @@ class PostController < ApplicationController
 
   def edit
     @post=Post.find_by_slug(params[:slug])
+    @categories = Category.all.map{|c| [c.name,c.id] }.reverse
   end
 
   def update
@@ -46,7 +48,7 @@ class PostController < ApplicationController
 
   private
     def post_params
-      params.require(:post).permit(:title,:context,:rating,:slug)
+      params.require(:post).permit(:title,:context,:rating,:category_id)
     end
 
 end

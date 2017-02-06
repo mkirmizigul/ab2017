@@ -1,7 +1,2 @@
 <h1>Yeni Kategori Ekle</h1>
-
-<%= form_for @category do |f| %>
-<%= f.text_field :name,placeholder:"Name" %>
-<%= f.text_field :description,placeholder:"Description" %>
-<%= f.submit "Enter" %>
-<% end %>
+<%= render 'form' %>

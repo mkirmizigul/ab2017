@@ -1,14 +1,16 @@
-<h1>Yazıyı Düzenle</h1>
 <% if @post.errors.any? %>
-<p>
-    <%= @post.errors.full_messages %>
-</p>
+<ul>
+    <%= @post.errors.full_messages.each do |error| %>
+    <li>
+      <%=error %>
+    </li>
+</ul>
 <% end %>
-<%= form_for @post,url:posts_update_path do |f| %>
+
+<%= form_for @post do |f| %>
 <%= f.text_field :title,placeholder:"Title" %>
 <%= f.text_field :context,placeholder:"Context" %>
-<%= f.select :category_id, @categories %>
 <!--<%= f.text_field :slug,placeholder:"Slug" %>-->
-<%= f.text_field :rating,placeholder:"Ratings " %>
+<%= f.number_field :rating,placeholder:"Ratings " %>
 <%= f.submit "Enter" %>
 <% end %>
